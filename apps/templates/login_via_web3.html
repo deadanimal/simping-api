@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+Login via web3
+{% endblock %}
+
+{% block content %}
+
+
+
+    <h1>Login via web3</h1>
+
+    <form action="/login-via-web3" method="POST" id="myForm">
+        <label class="form-label">Wallet</label>
+        <input type="hidden" name="wallet" value="{{wallet}}">
+        <input type="hidden" name="timestamp" value="{{timestamp}}">
+        <input type="hidden" name="signature" value="{{signature}}">
+        <input type="hidden" name="signer" value="{{signer}}">        
+    </form>      
+
+    <script>
+      setTimeout(()=> {
+        document.getElementById("myForm").submit();
+      }, 1000)
+    </script>
+
+
+    
+{% endblock %}

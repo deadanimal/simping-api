@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+- NFTs minted
+- NFTs owned
+- NFTs sold
+- Wallet Balance
+- all transactions
+
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+   
+
+<script>
+
+function checkLoginState() {
+  FB.getLoginStatus((response) =>  {
+    console.log(response)
+  });
+}
+window.checkLoginState = checkLoginState;
+</script>
+
+
+{% endblock %}

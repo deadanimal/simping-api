@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>Dashboard</h1>
+
+<h3>Feature</h3>
+<ol>
+    <li>Collection created</li>
+    <li>Token minted per collection</li>
+    <li>Token sold</li>
+    <li>Token bought</li>
+    <li>Wallet balance</li>
+
+    <li>IMPORTANT: Login via social media</li>
+    <li>Get all posts from the social media</li>
+    <li>Show socmed post mana yang belum mint, show to user, for them to mint</li>
+
+    IG https://developers.facebook.com/docs/instagram-basic-display-api/guides/getting-profiles-and-media
+
+    FB https://developers.facebook.com/docs/graph-api/get-started
+
+    TK https://developers.tiktok.com/doc/login-kit-video-list
+    
+    TW https://developer.twitter.com/en/docs/twitter-api/tweets/search/quick-start/recent-search
+
+
+    <li>All transactions</li>
+</ol>
+
+
+<fb:login-button 
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+   
+
+<script>
+    window.fbAsyncInit = function() {
+      FB.init({
+        appId      : '699942751032824',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v13.0'
+      });
+        
+      FB.AppEvents.logPageView();   
+        
+    };
+  
+    (function(d, s, id){
+       var js, fjs = d.getElementsByTagName(s)[0];
+       if (d.getElementById(id)) {return;}
+       js = d.createElement(s); js.id = id;
+       js.src = "https://connect.facebook.net/en_US/sdk.js";
+       fjs.parentNode.insertBefore(js, fjs);
+     }(document, 'script', 'facebook-jssdk'));
+</script>  
+
+<script>
+
+    
+
+function checkLoginState() {
+  FB.getLoginStatus((response) =>  {
+    console.log(response)
+  });
+}
+window.checkLoginState = checkLoginState;
+</script>
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <h1>Blog List</h1>
+    </div>
+</div>
+
+<div class="row">
+
+    {% for post in posts %}
+        <div class="col-12">
+            Title:  <a href="/blog/{{post.id}}">{{post.title}}</a>
+        </div>        
+    {% endfor %}    
+
+</div>
+
+{% endblock %}
