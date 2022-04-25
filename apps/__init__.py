@@ -84,9 +84,8 @@ def instagram_redirect():
 
     response = requests.post('https://api.instagram.com/oauth/access_token', files=files)
     json_data = response.json()
-    return json_data
-    # redirected_url = 'https://simping.org/instagram-login?access_token=' + response.json()[0]['access_token'] + '&user_id=' + response.json()[0]['user_id']
-    # return redirect(redirected_url)
+    redirected_url = 'https://simping.org/instagram-login?access_token=' + json_data['access_token'] + '&user_id=' + json_data['user_id']
+    return redirect(redirected_url)
 
 # @app.route('/about')
 # def about():
