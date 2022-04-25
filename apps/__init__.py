@@ -3,7 +3,7 @@ import json
 import time
 import os
 
-from flask import Flask, render_template, flash, request, redirect, session, jsonify
+from flask import Flask, render_template, flash, request, redirect, request_finished, session, jsonify
 from flask_recaptcha import ReCaptcha
 from flask_sqlalchemy import SQLAlchemy
 from decouple import config
@@ -68,12 +68,22 @@ def home():
     }
     return jsonify(data_)
 
+
+@app.route('/instagram-redirect')
+def instagram_redirect():
+    code = request.args.get('code')
+    code = code.replace("#_", "")
+    url = "https://api.instagram.com/oauth/access_token?client_id=" + config('INSTAGRAM_APP_ID') + "&client_secret=" +  config('INSTAGRAM_APP_SECRET') + "&grant_type=authorization_code&redirect_uri=https://api.simping.org/instagram-redirect&code=" + code
+    req = requests.get(url)
+    redirected_url = 'https://simping.org/instagram-login?access_token=' + req.data['access_token'] + '&user_id=' + req.data['user_id']
+    return redirect(redirected_url)
+
 # @app.route('/about')
 # def about():
 #     return render_template('about.html')
 
-from apps.collection.controllers import collection_bp as collection_module
-app.register_blueprint(collection_module)
+# from apps.collection.controllers import collection_bp as collection_module
+# app.register_blueprint(collection_module)
 
 
 db.create_all()
