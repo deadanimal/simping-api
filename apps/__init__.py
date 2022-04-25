@@ -75,7 +75,7 @@ def instagram_redirect():
     code = code.replace("#_", "")
     url = "https://api.instagram.com/oauth/access_token?client_id=" + config('INSTAGRAM_APP_ID') + "&client_secret=" +  config('INSTAGRAM_APP_SECRET') + "&grant_type=authorization_code&redirect_uri=https://simping-api.onrender.com/instagram-redirect&code=" + code
     req = requests.get(url)
-    redirected_url = 'https://simping.org/instagram-login?access_token=' + req.data['access_token'] + '&user_id=' + req.data['user_id']
+    redirected_url = 'https://simping.org/instagram-login?access_token=' + req.json()['access_token'] + '&user_id=' + req.json()['user_id']
     return redirect(redirected_url)
 
 # @app.route('/about')
